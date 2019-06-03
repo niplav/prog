@@ -1,0 +1,2 @@
+cp::{[b];b::y;{[a];a::x;{a,x}'b}'x} :"cartesian product (!x)*!y"
+leyland::{?{[a b];a::x@0;b::x@1;(a^b)+b^a}',/cp(2+!x;2+!x)}

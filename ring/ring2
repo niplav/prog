@@ -1,0 +1,3 @@
+#!/usr/bin/env rc
+
+tail -f nums | stdbuf -i0 -oL awk '{ printf("%i\n%i\n", $0+1, $0-1) }' >>nums

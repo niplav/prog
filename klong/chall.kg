@@ -1,0 +1,6 @@
+:"Returns a list of the sums of each row/column, unsorted."
+:"To find the biggest element, simply run serc(matrix))"
+:"One can, of course, also use .r() for reading the matrix"
+:"from standard input."
+
+serc::{|/(+/+x),(+/x)}

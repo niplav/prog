@@ -1,0 +1,3 @@
+#!/usr/bin/env pn
+pa=argv remove(0)
+((pa join " ") + "\n") print

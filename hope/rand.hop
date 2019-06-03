@@ -1,0 +1,34 @@
+!standard library
+uses list, range;
+
+!local functions
+uses regcut, endian;
+
+!returns a random number between 0 and 255
+
+dec rnd_byte : num;
+--- rnd_byte <= ord(read "/dev/urandom"@0);
+
+!returns n random numbers between 0 255
+
+dec rnd_bytes : num -> list num;
+--- rnd_bytes n <= map ord (front(n, read "/dev/urandom"));
+
+!returns a random number from 0 to l
+
+dec rnd_num : num -> num;
+--- rnd_num(l) <= le_int_from_bytes(rnd_bytes(u)) mod (l+1)
+		  where u==ceil(log(l+1)/log(256));
+
+!returns n random numbers from 0 up to l
+
+dec rnd_nums : num # num -> list num;
+--- rnd_nums(n, l) <= map (mod l+1) (map le_int_from_bytes (regcut(u, rnd_bytes(n*u))))
+		      where u==ceil(log(l+1)/log(256));
+
+!shuffles a list. unfortunately aborts with lists bigger than a hundred-ish elements.
+
+dec shuf : list alpha -> list alpha;
+--- shuf [] <= [];
+--- shuf (e::nil) <= [e];
+--- shuf (l) <= l@r :: shuf(front(r, l)<>after(r+1, l)) where r==rnd_num(length(l)-1);

@@ -1,0 +1,15 @@
+!standard library
+
+uses list;
+
+!cut a list "regularly" into sublists of one length
+!example:
+!uses regcut, range;
+!: regcut(4, 1..10);
+!:: [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10]] : list (list num)
+!: regcut(2, [1, 1, 2, 3, 5, 8, 13, 21]);
+!:: [[1, 1], [2, 3], [5, 8], [13, 21]] : list (list num)
+
+dec regcut : num # list alpha -> list (list alpha);
+--- regcut(n, l) <= if length(l)>n then [front(n, l)]<>regcut(n, after(n, l))
+				   else [l];

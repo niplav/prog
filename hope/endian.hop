@@ -1,0 +1,23 @@
+!standard library
+
+uses list, lists, arith;
+
+!assemble numbers from byte (number) lists
+
+!treats values as separate bytes and assembles a number from them, big endian
+
+dec be_num_asm : list num # num -> list num;
+--- be_num_asm(nil, n) <= [];
+--- be_num_asm(x::xs, n) <= (255^n*x)::be_num_asm(xs, n+1);
+
+dec be_int_from_bytes : list num -> num;
+--- be_int_from_bytes(l) <= sum(be_num_asm(l, 0));
+
+!treats values as separate bytes and assembles a number from them, little endian
+
+dec le_num_asm : list num # num -> list num;
+--- le_num_asm(nil, n) <= [];
+--- le_num_asm(x::xs, n) <= (255^n*x)::le_num_asm(xs, n-1);
+
+dec le_int_from_bytes : list num -> num;
+--- le_int_from_bytes(l) <= sum(le_num_asm(l, length(l)-1));

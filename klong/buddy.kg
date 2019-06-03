@@ -1,0 +1,6 @@
+.l("set")
+.l("util")
+:"calculate the probability that given a random bijection of a set onto"
+:"itself that no element will be mapped onto itself"
+:"unfortunately runs in O(n!), unsurprisingly"
+buddy::{[a p m];a::x;p::perm(x;!x);m::{x=!a}'p;(#flr({[]~x?1};m))%#m}

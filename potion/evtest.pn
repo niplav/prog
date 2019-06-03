@@ -1,0 +1,4 @@
+#!/usr/bin/env pn
+
+"a=5" eval
+a say

@@ -1,0 +1,15 @@
+uses list;
+
+!lay can be used to execute operations on two arrays, for each corresponding element.
+!this is similar to the behaviour in most array languages
+!example: lay([1, 2, 3, 4, 5, 6], [1, 2, 3], nonop +);
+!for the fitting, the first list must be the bigger one.
+
+dec laye : list alpha # list beta # (alpha # beta -> gamma) -> list gamma;
+--- laye ([], [], f) <= [];
+--- laye ((x::xs), (y::ys), f) <= if length(xs) = length(ys) then f(x, y)::laye(xs, ys, f) else [];
+
+dec lay : list alpha # list beta # (alpha # beta -> gamma) -> list gamma;
+--- lay (x, [], f) <= [];
+--- lay ([], y, f) <= [];
+--- lay (x, y, f) <= if (length(x) mod length(y))=0 then laye(front(length(y), x), y, f) <> laye(after(length(y), x), y, f) else [];

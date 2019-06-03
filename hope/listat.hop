@@ -1,0 +1,12 @@
+uses list;
+
+!index a list after a list, multiple same indexes possible
+!example:
+!uses listat, range;
+!: (1..10)@@[3, 1, 4, 1, 5, 9];
+!:: [4, 2, 5, 2, 6, 10] : list num
+
+infixr @@ : 8;
+dec @@ : list alpha # list num -> list alpha;
+--- x @@ [] <= [];
+--- x @@ (a::as) <= (x@a)::(x@@as);

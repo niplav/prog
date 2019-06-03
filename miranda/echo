@@ -1,0 +1,14 @@
+#!/usr/bin/mira -exp
+main
+
+%include "body.m"
+
+||just prints it's arguments
+main :: [ sys_message ]
+main = [Stdout (text (tl $*))]
+
+text :: [[char]] -> [char]
+text l = concat ((withspc l)++(feet l))++"\n"
+
+withspc :: [[char]] -> [[char]]
+withspc t = map (++" ") (body t)

@@ -1,0 +1,10 @@
+#!/usr/bin/mira -exp
+main
+
+%include "shrink.m"
+
+main = [Stdout (ptrn $-)], if #$*~=2
+     = [Stdout (ptrn (read ($*!1)))], otherwise
+
+||needed here: search.m, searches for an element in a list
+ptrn s=shrink s

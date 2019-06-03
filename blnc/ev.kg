@@ -1,0 +1,30 @@
+fact::{:[0=x;1;*/1+!x]}
+bincoeff::{[n k];n::x;k::y;fact(n)%(fact(k)*fact(n-k))}
+
+:"the cache and c assume that the arguments to c are strictly increasing"
+:"by one each time, which _is_ given in this case, but should in real life"
+:"never be assumed. Hacky, but it works for this specific program."
+
+cache::[]
+f::{:[x>#cache;cache::cache,2*bincoeff(2*x;x)%(x+1);[]];cache@(x-1)}
+
+:"non-cached version:"
+:"f::{2*bincoeff(2*x;x))%x+1}"
+
+:"fun fact: o(n) is just 2*n*f(n)"
+
+:"old version of o:"
+:"o::{[n];n::x;:[x=1;4;(2^(2*x))-+/{(2^((2*n)-2*x))*f(x)}'1+!x-1]}"
+
+o::{:[x=1;4;4*o(x-1)-f(x-1)]}
+:"because we just take the previous event space,"
+:"take away the finishing sequences and add any"
+:"possible combination of two coin flips"
+
+:"old version of pgn:"
+:"pgn::{f(x)%o(x)}"
+
+pgn::{1%2*x}
+
+:"output: step, probability of finishing at step, expected value at step"
+ev::{[px];px::pgn(x);.p(($x),",",($px*y),",",$z);.f(x+1;y-(y*px);z+2*x*y*px)}

@@ -1,0 +1,11 @@
+.l("./ss.kg")
+
+:"core function"
+pbw::{(x^y)+(y^x)}
+
+:"applies pwd on 2,x; 3,x; ...; x,x"
+pol::{pbw(x; 2+!x-1)}
+
+:"the main function: gives a list of all numbers that can be created"
+:"with the pbw numbers <=x"
+mn::{ssa(,/:~pol'2+!x)}

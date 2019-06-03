@@ -1,0 +1,4 @@
+#!/usr/bin/env rc
+
+l=`{wc -l <distr}
+sort -n distr | uniq -c | awk '{ print(100*$1/'^$l^' " " $2) }'

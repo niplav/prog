@@ -1,0 +1,13 @@
+*.bzip2
+*.gzip
+*.xz
+
+*.jpeg
+*.jpg
+*.png
+
+*.o
+*.cmi
+*.cmo
+*.cmx
+*.use

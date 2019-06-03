@@ -1,0 +1,8 @@
+:module(:rn)
+:"return x random numbers between 0 and 1"
+f::{x{x,.rn()}:*[]}
+:"return x random numbers either 0 or 1"
+b::{0.5>f(x)}
+:"return x random integers in the range y..z"
+i::{y+_f(x)*1+z-y}
+:module(0)

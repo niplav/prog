@@ -1,0 +1,3 @@
+#!/usr/bin/env rc
+
+tail -f -n1 sums | stdbuf -i0 -oL ./md5pl >>sums

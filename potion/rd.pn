@@ -1,0 +1,6 @@
+#!/usr/bin/env pn
+#not exactly correct: does not stop.
+#but anyway, works somehow.
+#good enough for a demo, I guess...
+
+loop: read print.

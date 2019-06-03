@@ -1,0 +1,3 @@
+infix |> : 9;
+dec |> : alpha # (alpha -> beta) -> beta;
+--- x|>f <= f(x);
