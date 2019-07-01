@@ -1,0 +1,30 @@
+.l("nstat")
+
+.comment("*****")
+Calculator for population development.
+Assumptions:
+Fertility is normally distributed
+Heritability is really simple (new fertility=fertility+fertility*heritability)
+There are no external factors influencing population development
+***************************************************************************
+
+:"population (in billion)"
+pop::8
+
+:"mean fertility"
+fertmean::1
+
+:"standard deviation of fertility"
+fertsd::1
+
+:"the heritability of fertility"
+fertherit::0.22
+
+:"number of simulated generations"
+gens::20
+
+:"maximum number of children the average woman can reasonably have"
+maxchildren::7
+
+res::gens{fertmean:::[fertmean>maxchildren%2;fertmean;fertmean+fertherit*fertmean];
+	 pop::+/{x*(pop%2)*n.pdf(x;fertmean;fertsd)}'!maxchildren;pop,x}:*[]
