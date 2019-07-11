@@ -1,0 +1,16 @@
+.l("nstat")
+.l("nplot")
+.l("csv")
+
+.fc(.ic("b"));data::csv.load()
+
+data::{(1:$x@0),1.0:$'x@[2]}'data
+
+l::lreg(data)
+
+grid([1900 2100 20];[-0.5 1.5 0.5])
+
+plot(lr(;l))
+scplot2(data)
+
+draw()
