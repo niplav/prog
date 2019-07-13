@@ -39,3 +39,10 @@ rn.f::{x{x,.rn()}:*[]}
 rn.b::{0.5>f(x)}
 :"return x random integers in the range y..z"
 rn.i::{y+_f(x)*1+z-y}
+
+:"matrix to the yth power"
+matpow::{(y-1) matp(x;):*x}
+
+:"matrix power until convergence (currently not working, maybe because"
+:"of floating point errors and probably some other stuff that's unclean"
+matconv::{matp(x;):~x}

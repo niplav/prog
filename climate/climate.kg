@@ -2,7 +2,7 @@
 .l("nplot")
 .l("csv")
 
-.fc(.ic("b"));data::csv.load()
+.fc(.ic("climate.txt"));data::csv.load()
 
 data::{(1:$x@0),1.0:$'x@[2]}'data
 
