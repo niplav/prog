@@ -36,14 +36,14 @@ end
 
 --Probability of living until signup year given the current age
 --using Baye's theorem
---Pr[Age|Curage]=Pr[Age ∩ Curage]/Pr[Curage]=Pr[Age]/Pr[Curage]
+--Pr[x≥Age|x≥Curage]=Pr[x≥Age, x≥Curage]/Pr[x≥Curage]=Pr[x≥Age]/Pr[x≥Curage]
 
 function prob_liveto(age)
 	return gompertz(age)/gompertz(curage)
 end
 
-function value(age)
-	return prob_pres*prob_succ*prob_signup(age)*prob_liveto(age)*years_gain*val_year
+function benefit(age)
+	return prob_pres*prob_succ*years_gain*val_year
 end
 
 --CMS cost
@@ -93,6 +93,10 @@ function cost(age)
 	return alcor_fees(age)+life_ins(age)
 end
 
+function value(age)
+	return prob_signup(age)*prob_liveto(age)*(benefit(age)-cost(age))
+end
+
 for age=curage,math.floor(actval[curage]) do
-	print(age .. ": " .. value(age)-cost(age))
+	print(age .. ": " .. value(age))
 end
