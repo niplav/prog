@@ -1,9 +1,6 @@
 :"round x to y digits"
 rdnd::{(_x*10^y)%(10^y)}
 
-:"return the xth fibonacci number"
-fib::{*(x-1){(+/x),*x}:*[1]}
-
 :"euclidean norm"
 norm.eucl::{sqr(+/{x^2}'x)}
 
@@ -36,9 +33,9 @@ rk::{(x+x*!_((#y)%x)-.e):_y}
 :"return x random numbers between 0 and 1"
 rn.f::{x{x,.rn()}:*[]}
 :"return x random numbers either 0 or 1"
-rn.b::{0.5>f(x)}
+rn.b::{0.5>rn.f(x)}
 :"return x random integers in the range y..z"
-rn.i::{y+_f(x)*1+z-y}
+rn.i::{y+_rn.f(x)*1+z-y}
 
 :"matrix to the yth power"
 matpow::{(y-1) matp(x;):*x}
@@ -46,3 +43,8 @@ matpow::{(y-1) matp(x;):*x}
 :"matrix power until convergence (currently not working, maybe because"
 :"of floating point errors and probably some other stuff that's unclean"
 matconv::{matp(x;):~x}
+
+:"golden ratio, fibonacci numbers, and inverse fibonacci numbers"
+gr::(1+sqr(5))%2
+fib::{*(x-1){(+/x),*x}:*[1]}
+fibinv::{_ln(0.5+x*sqr(5))%ln(gr)}
