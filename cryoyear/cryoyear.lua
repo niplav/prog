@@ -13,7 +13,7 @@ years_gain=100
 prob_pres=0.6
 
 --starting value for probability for signing up to cryo, exponentially decreasing
-decay=0.9
+decay=0.95
 
 --probability of still signing up for cryonics at a given age
 
@@ -49,34 +49,43 @@ end
 --CMS cost
 cms=180
 
+--Starting age for CMS
+function cms_age(age)
+	return actval[age]-10
+end
+
+function cms_fees(age)
+	return cms*(actval[age]-cms_age(age))
+end
+
 --Fees for being an alcor member
 --Assumptions: anyone under the age of 25 is studying
 --I know that this is classist
 
-function alcor_fees(age)
+function membership_fees(age)
 	local left=math.floor(actval[age])-age
 	local cost=0
 
 	if age<25 then
 		newage=25
-		cost=(newage-age)*(310)
+		cost=(newage-age)*310
 	end
 	if left>=30 then
-		cost=cost+(left-30)*(305+cms)
+		cost=cost+(left-30)*305
 		left=30
 	end
 	if left>=25 then
-		cost=cost+(left-25)*(368+cms)
+		cost=cost+(left-25)*368
 		left=24
 	end
 	if left>=20 then
-		cost=cost+(left-20)*(430+cms)
+		cost=cost+(left-20)*430
 		left=20
 	end
 	if age<=25 then
-		cost=cost+(left-(25-age))*(525+cms)
+		cost=cost+(left-(25-age))*525
 	else
-		cost=cost+left*(525+cms)
+		cost=cost+left*525
 	end
 
 	return 300+cost
@@ -85,12 +94,12 @@ end
 --Cost for the life insurance
 --I'll assume that insurance companies make these so that they make a guaranteed profit
 
-function life_ins(age)
+function pres_cost(age)
 	return 90000
 end
 
 function cost(age)
-	return alcor_fees(age)+life_ins(age)
+	return membership_fees(age)+pres_cost(age)+cms_fees(age)
 end
 
 function value(age)
