@@ -6,9 +6,9 @@ actval={78.36, 78.64, 78.66, 78.67, 78.68, 78.69, 78.69, 78.70, 78.71, 78.71, 78
 --value of one year of life
 val_year=50000
 --probability of cryonics success
-prob_succ=0.1
+prob_succ=0.05
 --years gained by cryonics
-years_gain=100
+years_gain=4500
 --probability of being preserved
 prob_pres=0.6
 
