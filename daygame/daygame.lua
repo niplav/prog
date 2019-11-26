@@ -56,6 +56,6 @@ function cost(appr)
 	return opportunity_cost+appr*mental_cost+date_ratio*date_cost*avg_dates
 end
 
-for i=1,10000 do
+for i=1,10000,100 do
 	print((benefit(i)-cost(i)) .. ": " .. i)
 end
