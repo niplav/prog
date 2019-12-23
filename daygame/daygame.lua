@@ -1,17 +1,20 @@
 --Is daygame worth it? A little model designed to find that out.
+--Also, calculating the optimal number of approaches.
 
 --TODO: Sources for nearly all of these numbers
 
 --A bit under minimum wage
 hour_val=5
 --Price of middle range quality prostitution+a sense of pride and accomplishment
-prost_cost=500
-pride_val=250
+prost_cost=250
+pride_val=500
 first_lay_val=prost_cost+pride_val
 --How much a date costs (rough estimate)
-date_cost=20
+date_cost=40
 --The average number of dates before a lay
 avg_dates=2
+--The average length of a date (in hours) (total 7 hours for 2 dates, mystery's number)
+date_len=3.5
 
 --One every 15 minutes seems fair, but most experienced daygamers seem to do less?
 appr_per_hour=4
@@ -53,7 +56,9 @@ function cost(appr)
 	--print("opportunity cost: " .. opportunity_cost)
 	--print("mental cost: " .. appr*mental_cost)
 	--print("date cost: " .. date_ratio*date_cost*avg_dates)
-	return opportunity_cost+appr*mental_cost+date_ratio*date_cost*avg_dates
+	local total_date_cost=date_ratio*date_cost*avg_dates
+	local date_opp_cost=date_ratio*date_len*avg_dates*hour_val
+	return opportunity_cost+appr*mental_cost+total_date_cost+date_opp_cost
 end
 
 for i=1,10000,100 do

@@ -1,5 +1,0 @@
-:"n dice from i to j (usually 1 to 6)"
-:"they are thrown as long as the sum of the current throw is greater than the last one"
-:"probability distribution over the length of these throwing chains"
-
-:"for one dice:"

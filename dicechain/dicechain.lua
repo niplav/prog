@@ -27,6 +27,7 @@ function avgchainlen(tries, dicenum, low, high)
 	local sum=0
 	for i=0, tries do
 		local imdt=chainlen(dicenum, low, high)
+		print(sum/n, n)
 		sum=sum+imdt
 		n=n+1
 	end
