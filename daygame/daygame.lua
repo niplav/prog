@@ -2,6 +2,8 @@
 --Also, calculating the optimal number of approaches.
 
 --TODO: Sources for nearly all of these numbers
+--TODO: How often do people who do daygame sleep with their lays?
+--Probably has quadratically diminishing returns on each time they have sex.
 
 --A bit under minimum wage
 hour_val=5
@@ -61,6 +63,6 @@ function cost(appr)
 	return opportunity_cost+appr*mental_cost+total_date_cost+date_opp_cost
 end
 
-for i=1,10000,100 do
+for i=1,10000 do
 	print((benefit(i)-cost(i)) .. ": " .. i)
 end

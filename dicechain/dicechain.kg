@@ -1,0 +1,5 @@
+:"Counting partition: Ways of representing x as the sum of y dices from 1 to z"
+count::{[s d l];s::x;d::y;l::z;:[(s<d)|s>d*l;0:|d=1;1;+/{count(s-x;d-1;l)}'1+!(s&l)]}
+:"There seems to be a very nice geometric intuition about counting"
+:"partitions (diagonals in ℤ^{dices})"
+:"Investigate!"
