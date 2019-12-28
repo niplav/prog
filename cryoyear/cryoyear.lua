@@ -51,7 +51,7 @@ function prob_diebeforelev(age)
 	if curyear+(age-curage)>levyear then
 		return 0
 	else
-		return 1-(gompertz(levyear-curyear)/gompertz(age))
+		return 1-(gompertz(curage+(levyear-curyear))/gompertz(age))
 	end
 end
 
