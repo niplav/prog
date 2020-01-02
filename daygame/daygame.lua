@@ -38,9 +38,7 @@ function benefit(appr)
 	local lay_ratio=ratio(appr)
 	--positive side-effects of daygame of behavior
 	--it seems like those grow very slowly after an initial surge
-	local flowthrough_val=75*math.log(appr)
-	--print("lays val: " .. first_lay_val*math.sqrt(lay_ratio*appr))
-	--print("flowthrough val: " .. flowthrough_val)
+	local flowthrough_val=200*math.log((appr+1)*0.2)
 	return first_lay_val*math.sqrt(lay_ratio*appr)+flowthrough_val
 end
 
@@ -50,17 +48,13 @@ function cost(appr)
 	--mental cost is at first positive (the first approaches are very hard)
 	--then daygame becomes an enjoyable activity and the mental cost is negative
 	--i.e a benefit, but the enjoyment fades over time
-	--TODO: too many magic numbers
-	local mental_cost=(0.999^appr)*0.3*-(math.log(appr*2+10)-7)
+	local mental_cost=-(200*math.log((appr+100)*0.01))-200
 	--one can abuse the ratio to find out how many dates one will have to pay
 	--maybe a constant factor is not appropriate?
 	local date_ratio=3*ratio(appr)
-	--print("opportunity cost: " .. opportunity_cost)
-	--print("mental cost: " .. appr*mental_cost)
-	--print("date cost: " .. date_ratio*date_cost*avg_dates)
 	local total_date_cost=date_ratio*date_cost*avg_dates
 	local date_opp_cost=date_ratio*date_len*avg_dates*hour_val
-	return opportunity_cost+appr*mental_cost+total_date_cost+date_opp_cost
+	return opportunity_cost+mental_cost+total_date_cost+date_opp_cost
 end
 
 for i=1,10000 do
