@@ -1,3 +1,5 @@
+.l("math")
+
 :"round x to y digits"
 rdnd::{(_x*10^y)%(10^y)}
 
