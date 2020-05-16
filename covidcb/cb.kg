@@ -1,0 +1,15 @@
+monthlygdp::(4.04*10^12)%12
+mlv::0.27*monthlygdp
+qalyval::120000
+mlyl::12
+infected::0.75*80*10^6
+critical::0.04*infected
+lockdur::6
+
+deathspercritnl::0.35
+deathspercritl::0.2
+deathsnl::deathspercritnl*critical
+deathsl::deathspercritl*critical
+
+losswithlock::(deathsl*mlyl*qalyval)+lockdur*mlv
+losswithoutlock::deathsnl*mlyl*qalyval
