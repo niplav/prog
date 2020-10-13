@@ -2,11 +2,13 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 #define CHILDREN_PER_FAMILY 3
 
-const int TITLES=2000;
-const int FAMILIES=2000;
+const int TITLES=200;
+const int FAMILIES=200;
 
 typedef struct {
 	short int title;
@@ -44,7 +46,7 @@ int main(int argc, char** argv)
 	Person* men=(Person*) calloc(CHILDREN_PER_FAMILY*FAMILIES, sizeof(Person));
 
 	/* initialize */
-	srand(time(NULL));
+	srand(time(NULL)+(int)getpid());
 
 	numoffamilies=FAMILIES;
 

@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-enum flip { HEAD, TAIL };
+typedef enum flip { HEAD, TAIL };
 
 int p;
 
